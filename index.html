@@ -3,27 +3,16 @@
 <head>
     <title>Deficit Busters</title>
 
+    <script src="http://github.hubspot.com/odometer/odometer.js"></script>
     <!-- Angular Material style sheet -->
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
 
-    <!-- Angular Material requires Angular.js Libraries -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
-
-    <!-- Angular Charts -->
-    <script src="node_modules/angular-chart.js/dist/angular-chart.js"></script>
+	<!-- Angular Charts -->
 	<link rel="stylesheet" href="node_modules/angular-chart.js/dist/angular-chart.css">
 
-    <!-- Angular Material Library -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-    <!-- Odometr includes -->
+    <!-- Odometer includes -->
     <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-car.css" />
-    <script src="http://github.hubspot.com/odometer/odometer.js"></script>
 
-    <!-- Extra styles for this example -->
     <style>
     .odometer {
         font-size: 50px;
@@ -40,6 +29,7 @@
  
     <div id="odometer" class="odometer">{{debtCounter}}</div>
     <div class="controls">
+        {{pieData}}
 	    <md-content style="margin: 16px; padding:16px">
             <h3>Budget Breakdown</h3>
             <div layout>
@@ -47,6 +37,7 @@
                     <span class="md-body-1">Things That Go Boom</span>
                 </div>
                 <md-slider flex min="0" max="255" ng-model="budget1" aria-label="red" id="red-slider" class></md-slider>
+                {{budget1}}
             </div>
             <div layout>
                 <div flex="30" layout layout-align="center center">
@@ -66,5 +57,19 @@
         </canvas> 
     </div>
      
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+
+    <!-- Angular Charts -->
+    <script src="node_modules/angular-chart.js/node_modules/chart.js/Chart.js"></script>
+    <script src="node_modules/angular-chart.js/dist/angular-chart.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
 </body>
 </html>
