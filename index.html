@@ -14,12 +14,22 @@
     <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-car.css" />
 
     <style>
-    .odometer {
-        font-size: 50px;
-    }
-    .controls {
-        width: 50%;
-    }
+        body {
+            padding: 40px;
+        }
+
+        .header_div {
+            width: 50%;
+            margin: 0 auto;
+        }
+        .odometer {
+            font-size: 50px;
+        }
+
+        .column {
+            width: 50%;
+            float: left;
+        }
     </style>
     <script>
     </script>
@@ -27,33 +37,31 @@
 </head>
 <body ng-controller="MainController">
  
-    <div id="odometer" class="odometer">{{debtCounter}}</div>
-    <div class="controls">
-        {{pieData}}
-	    <md-content style="margin: 16px; padding:16px">
-            <h3>Budget Breakdown</h3>
-            <div layout>
-                <div flex="30" layout layout-align="center center">
-                    <span class="md-body-1">Things That Go Boom</span>
-                </div>
-                <md-slider flex min="0" max="255" ng-model="budget1" aria-label="red" id="red-slider" class></md-slider>
-                {{budget1}}
-            </div>
-            <div layout>
-                <div flex="30" layout layout-align="center center">
-                    <span class="md-body-1">Finding Aliens</span>
-                </div>
-                <md-slider flex min="0" max="255" ng-model="budget2" aria-label="red" id="red-slider" class></md-slider>
-            </div>
-            <div layout>
-                <div flex="30" layout layout-align="center center">
-                    <span class="md-body-1">Teaching the Chilrens</span>
-                </div>
-                <md-slider flex min="0" max="255" ng-model="budget3" aria-label="red" id="blue-slider" class></md-slider>
-            </div>
-        </md-content>
-		<canvas id="pie" class="chart chart-pie"
-            chart-data="pieData" chart-labels="labels">
+    <div>
+        <div class="header_div">
+            <h1>America's National Debt</h1>
+            <div id="odometer" class="odometer">{{debtCounter}}</div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="controls">
+                <md-content style="margin: 16px; padding:16px">
+                    <h3>Budget Breakdown</h3>
+                    <div ng-repeat="budgetItem in budgetItems track by $index">
+                        <div layout>
+                            <div flex="30" layout layout-align="center center">
+                                <span class="md-body-1">{{budgetItem.name}}</span>
+                            </div>
+                            <md-slider flex min="0" max="255" ng-model="budgetItem.amount" aria-label="red" id="red-slider" class></md-slider>
+                            {{budgetItem.amount}}
+                        </div>
+                    </div>
+                </md-content>
+        </div>
+    </div>
+    <div class="column">
+        <canvas id="pie" class="chart chart-pie"
+               chart-data="pieData" chart-labels="labels">
         </canvas> 
     </div>
      
@@ -70,6 +78,9 @@
     <!-- Angular Material Library -->
     <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
+
+    <!-- Lodash -->
+    <script src="https://cdn.jsdelivr.net/lodash/4.5.0/lodash.min.js"></script>
 
 </body>
 </html>
