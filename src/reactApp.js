@@ -61,7 +61,21 @@ var DeficitBusters = React.createClass({
         var deficitAmount = this.state.deficitAmount;
         return (
                 <div>
-                    <div>Hello {this.props.name}</div>
+                    {_.forEach(this.state.budget, function(agency, bureauData) {
+                        return (
+                            <details>
+                                <summary>{agency}</summary>
+                                {_.forEach(bureauData, function(bureau, accountData) {
+                                    return (
+                                        <details>
+                                            <summary>{bureau}</summary>
+                                        </details>
+                                    )
+                                })}
+                            </details>
+                        )
+                    })}
+
                     <OdometerComponent value={deficitAmount} />
                 </div>
                )
