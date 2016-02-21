@@ -59,19 +59,29 @@ var DeficitBusters = React.createClass({
     },
     render: function() {
         var deficitAmount = this.state.deficitAmount;
+        var indent = {"paddingLeft": "20px"};
         return (
                 <div>
-                    {_.forEach(this.state.budget, function(agency, bureauData) {
+                    {_.map(this.state.budget, function(bureaus, agency) {
                         return (
                             <details>
                                 <summary>{agency}</summary>
-                                {_.forEach(bureauData, function(bureau, accountData) {
-                                    return (
-                                        <details>
-                                            <summary>{bureau}</summary>
-                                        </details>
-                                    )
-                                })}
+                                <div style={indent}>
+                                    {_.map(bureaus, function(accounts, bureau) {
+                                        return (
+                                            <details>
+                                                <summary>{bureau}</summary>
+                                                <div style={indent}>
+                                                    {_.map(accounts, function(amount, account) {
+                                                        return (
+                                                            <div>{account} - {amount}</div>
+                                                            )
+                                                    })}
+                                                </div>
+                                            </details>
+                                        )
+                                    })}
+                                </div>
                             </details>
                         )
                     })}
