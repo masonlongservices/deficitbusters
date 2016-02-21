@@ -1,6 +1,7 @@
 // main.js
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Papa = require("papaparse");
 
 var OdometerComponent = React.createClass({
   componentDidMount: function(){
@@ -21,9 +22,35 @@ var OdometerEl = React.createElement(OdometerComponent);
 
 var DeficitBusters = React.createClass({
     getInitialState: function() {
-        return { deficitAmount: 19032777056146.24 };
+        return {
+            deficitAmount: 19032777056146.24,
+            budgetItems: [],
+        };
     },
     componentDidMount: function(){
+        var self = this;
+        Papa.parse("http://0.0.0.0:8001/build/budget2016.csv", {
+			download: true,
+            header: true,
+			complete: function(results) {
+                var budgetItems = results.data;
+
+                var budget = {};
+
+                _(budgetItems).forEach(function(item) {
+                    var agency = item["Agency Name"];
+                    var bureau = item["Bureau Name"];
+                    var account = item["Account Name"];
+                    var amount = item["2016"];
+                    if (!(agency in budget)) { budget[agency] = {} }
+                    if (!(bureau in budget[agency])) { budget[agency][bureau] = {} }
+                    budget[agency][bureau][account] = amount;
+                });
+
+				console.log(budget);
+                self.setState({budget: budget});
+			}
+		});
         //setInterval(this.tick, 2000);
     },
     tick: function() {
