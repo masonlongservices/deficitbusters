@@ -2,6 +2,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Papa = require("papaparse");
+var _ = require("lodash");
 
 var OdometerComponent = React.createClass({
   componentDidMount: function(){
