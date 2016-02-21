@@ -19,7 +19,7 @@ var OdometerComponent = React.createClass({
 
 var OdometerEl = React.createElement(OdometerComponent);
 
-var HelloMessage = React.createClass({
+var DeficitBusters = React.createClass({
     getInitialState: function() {
         return { deficitAmount: 19032777056146.24 };
     },
@@ -41,6 +41,6 @@ var HelloMessage = React.createClass({
 });
 
 ReactDOM.render(
-  <HelloMessage />,
+  <DeficitBusters />,
   document.getElementById('container')
 );
