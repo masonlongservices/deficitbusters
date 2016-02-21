@@ -27,8 +27,17 @@
         }
 
         .column {
-            width: 50%;
+            width: 60%;
             float: left;
+        }
+
+        .column2 {
+            width: 30%;
+            float: left;
+        }
+
+        .chart {
+            height: 50px;
         }
     </style>
     <script>
@@ -52,17 +61,20 @@
                             <div flex="30" layout layout-align="center center">
                                 <span class="md-body-1">{{budgetItem.name}}</span>
                             </div>
-                            <md-slider flex min="0" max="255" ng-model="budgetItem.amount" aria-label="red" id="red-slider" class></md-slider>
+                            <md-slider flex min="0" max="255" ng-model="budgetItem.amount" aria-label="red" id="red-slider" class="{{budgetItem.colorClass}}"></md-slider>
                             {{budgetItem.amount}}
                         </div>
                     </div>
                 </md-content>
         </div>
     </div>
-    <div class="column">
+    <div class="column2" style="height: 50px">
         <canvas id="pie" class="chart chart-pie"
-               chart-data="pieData" chart-labels="labels">
+            chart-data="pieData" chart-labels="labels">
         </canvas> 
+        <canvas id="bar" class="chart chart-bar"
+            chart-data="barData" chart-labels="labels"> chart-series="series"
+        </canvas>
     </div>
      
     <!-- Angular Material requires Angular.js Libraries -->

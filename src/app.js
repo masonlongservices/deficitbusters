@@ -1,4 +1,14 @@
-var DeficitBusters = angular.module('DeficitBusters', ["ngMaterial", "chart.js"]);
+var DeficitBusters = angular.module('DeficitBusters', ["ngMaterial", "chart.js"])
+	.config(['ChartJsProvider', function (ChartJsProvider) {
+		// Configure all charts
+		ChartJsProvider.setOptions({
+		  colours: ['#000099', '#ff5500', '#ff1166'],
+		});
+		// Configure all line charts
+		ChartJsProvider.setOptions('Line', {
+		  datasetFill: false
+		});
+	  }]);
 
 DeficitBusters.controller('MainController', function($scope, $interval) {
     $scope.debtCounter = 19032777056146.24;
@@ -22,27 +32,34 @@ DeficitBusters.controller('MainController', function($scope, $interval) {
     {
         name: "Things That Go Boom",
         amount: 20,
+        colorClass: "md-primary",
     },
     {
         name: "Finding Aliens",
         amount: 20,
+        colorClass: "md-warn",
     },
     {
         name: "Teaching the Chilrens",
         amount: 20,
+        colorClass: "md-ascent",
     },
     ];
 
+    function updateUiData() {
+        $scope.pieData = getAmounts()[0];
+        $scope.barData = getAmounts();
+    }
     $scope.$watch("budgetItems",
         function(newValue, oldValue) {
-            $scope.pieData = getPieData();
+            updateUiData();
         }
     , true);
     $scope.labels = ["Things That Go Boom", "Finding Aliens", "Teaching the Chilrens"];
-    var getPieData = function() {
-        return _.map($scope.budgetItems, function(item) {
+    var getAmounts = function() {
+        return [_.map($scope.budgetItems, function(item) {
             return item.amount;
-        });
+        })];
     };
-	$scope.pieData = getPieData();
+    updateUiData();
 });
