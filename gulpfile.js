@@ -40,6 +40,7 @@ gulp.task("build", ["clean"], function(){
 gulp.task("watch", ["build"], function(){
     gulp.watch([
         [DIR_SOURCE, "**"].join(""),
+        [DIR_SOURCE, "components/", "**"].join(""),
         "./package.json",
         "./gulpfile.js"
     ], ["build"]);
