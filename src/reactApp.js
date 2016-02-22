@@ -3,6 +3,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Papa = require("papaparse");
 var _ = require("lodash");
+var numeral = require("numeral");
+var AgencyList = require("./components/AgencyList");
 
 var OdometerComponent = React.createClass({
   componentDidMount: function(){
@@ -39,13 +41,19 @@ var DeficitBusters = React.createClass({
                 var budget = {};
 
                 _(budgetItems).forEach(function(item) {
-                    var agency = item["Agency Name"];
-                    var bureau = item["Bureau Name"];
-                    var account = item["Account Name"];
-                    var amount = item["2016"];
-                    if (!(agency in budget)) { budget[agency] = {} }
-                    if (!(bureau in budget[agency])) { budget[agency][bureau] = {} }
-                    budget[agency][bureau][account] = amount;
+                    if ("Agency Name" in item) {
+                        var agency = item["Agency Name"];
+                        var bureau = item["Bureau Name"];
+                        var account = item["Account Name"];
+                        var amount = parseInt(item["2016"].replace(",", ""));
+                        if (amount != 0) {
+                            if (!(agency in budget)) { budget[agency] = {agency: agency, totalAmount: 0, bureaus:{} } }
+                            if (!(bureau in budget[agency]["bureaus"])) { budget[agency]["bureaus"][bureau] = {bureau: bureau, totalAmount: 0, accounts:{} } }
+                            budget[agency]["bureaus"][bureau]["accounts"][account] = {account: account, amount: amount};
+                            budget[agency]["totalAmount"] += amount;
+                            budget[agency]["bureaus"][bureau]["totalAmount"] += amount;
+                        }
+                    }
                 });
 
 				console.log(budget);
@@ -60,31 +68,10 @@ var DeficitBusters = React.createClass({
     render: function() {
         var deficitAmount = this.state.deficitAmount;
         var indent = {"paddingLeft": "20px"};
+        var orderedAgencyList = _.orderBy(this.state.budget, ["totalAmount"], ["desc"]);
         return (
                 <div>
-                    {_.map(this.state.budget, function(bureaus, agency) {
-                        return (
-                            <details>
-                                <summary>{agency}</summary>
-                                <div style={indent}>
-                                    {_.map(bureaus, function(accounts, bureau) {
-                                        return (
-                                            <details>
-                                                <summary>{bureau}</summary>
-                                                <div style={indent}>
-                                                    {_.map(accounts, function(amount, account) {
-                                                        return (
-                                                            <div>{account} - {amount}</div>
-                                                            )
-                                                    })}
-                                                </div>
-                                            </details>
-                                        )
-                                    })}
-                                </div>
-                            </details>
-                        )
-                    })}
+                    <AgencyList budgetItems={orderedAgencyList} itemType="agency" subItemType="bureaus" />
 
                     <OdometerComponent value={deficitAmount} />
                 </div>
