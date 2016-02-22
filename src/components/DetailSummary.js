@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var InputRange = require("./InputRange");
 var ListItem = require("./ListItem");
 
 var DetailSummary = React.createClass({
@@ -14,6 +13,7 @@ var DetailSummary = React.createClass({
                     <ListItem 
                         title={this.props.summary}
                         value={this.props.value}
+                        onRangeChanged={this.props.onRangeChanged}
                         />
                 </summary>
                 <div style={indent}>{this.props.children}</div>

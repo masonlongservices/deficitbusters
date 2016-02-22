@@ -6,8 +6,9 @@ var DetailSummary = require("./DetailSummary");
 
 var DetailSummaryList = React.createClass({
   render: function() {
-    console.log("render");
     var self = this;
+    console.log("DetailSummaryList");
+    console.log(this.props);
     var orderedItems = _.orderBy(this.props.items, ["amount"], ["desc"]);
     return (
             <div>
@@ -15,7 +16,12 @@ var DetailSummaryList = React.createClass({
                     var name = itemProps["name"];
                     var amount = numeral(itemProps["amount"]).format('$0,0');
                     return (
-                            <DetailSummary summary={name + " (" + amount + ")"} value={itemProps["amount"]} key={name}>
+                            <DetailSummary 
+                                summary={name + " (" + amount + ")"} 
+                                value={itemProps["amount"]} 
+                                key={name}
+                                onRangeChanged={self.props.onRangeChanged}>
+
                                 {React.Children.map(self.props.children, function (child) {
                                     return React.cloneElement(child, {
                                         items: itemProps["items"]

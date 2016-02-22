@@ -1,0 +1,434 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'install' ]
+2 info using npm@2.14.2
+3 info using node@v4.0.0
+4 verbose readDependencies loading dependencies from /Users/alexlong/Projects/DeficitBusters/deficitbusters/package.json
+5 warn package.json deficitbusters@1.0.0 No description
+6 warn package.json deficitbusters@1.0.0 No repository field.
+7 warn package.json deficitbusters@1.0.0 No README data
+8 verbose install where, deps [ '/Users/alexlong/Projects/DeficitBusters/deficitbusters',
+8 verbose install   [ 'angular-chart.js',
+8 verbose install     'babel-preset-react',
+8 verbose install     'babelify',
+8 verbose install     'event-stream',
+8 verbose install     'gulp-clean',
+8 verbose install     'lodash',
+8 verbose install     'numeral',
+8 verbose install     'papaparse',
+8 verbose install     'react',
+8 verbose install     'react-addons',
+8 verbose install     'react-dom',
+8 verbose install     'react-odometer' ] ]
+9 verbose install where, peers [ '/Users/alexlong/Projects/DeficitBusters/deficitbusters', [] ]
+10 verbose installManyTop reading for lifecycle /Users/alexlong/Projects/DeficitBusters/deficitbusters/package.json
+11 info preinstall deficitbusters@1.0.0
+12 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/angular-chart.js/package.json
+13 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/babel-preset-react/package.json
+14 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/babelify/package.json
+15 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/browserify/package.json
+16 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/browserify-shim/package.json
+17 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/event-stream/package.json
+18 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/gulp/package.json
+19 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/gulp-clean/package.json
+20 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/lodash/package.json
+21 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/numeral/package.json
+22 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/papaparse/package.json
+23 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react/package.json
+24 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-addons/package.json
+25 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom/package.json
+26 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-input-range/package.json
+27 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-odometer/package.json
+28 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-rangeslider/package.json
+29 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/reactify/package.json
+30 verbose installManyTop reading scoped package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/vinyl-source-stream/package.json
+31 info package.json gulp-clean@0.3.1 No license field.
+32 info package.json papaparse@4.1.2 No license field.
+33 info package.json numeral@1.5.3 No license field.
+34 info package.json react-addons@0.9.0 No license field.
+35 info package.json react-odometer@0.0.1 No repository field.
+36 verbose readDependencies loading dependencies from /Users/alexlong/Projects/DeficitBusters/deficitbusters/package.json
+37 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/angular-chart.js/package.json
+38 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/babel-preset-react/package.json
+39 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/babelify/package.json
+40 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/browserify/package.json
+41 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/browserify-shim/package.json
+42 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/event-stream/package.json
+43 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/gulp/package.json
+44 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/gulp-clean/package.json
+45 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/lodash/package.json
+46 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/numeral/package.json
+47 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/papaparse/package.json
+48 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react/package.json
+49 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-addons/package.json
+50 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom/package.json
+51 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-input-range/package.json
+52 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-odometer/package.json
+53 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-rangeslider/package.json
+54 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/reactify/package.json
+55 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/vinyl-source-stream/package.json
+56 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/.bin/browserify/package.json
+57 verbose targetResolver reading package data from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/.bin/gulp/package.json
+58 silly cache add args [ 'react-dom@^0.1.0', null ]
+59 verbose cache add spec react-dom@^0.1.0
+60 silly cache add parsed spec Result {
+60 silly cache add   raw: 'react-dom@^0.1.0',
+60 silly cache add   scope: null,
+60 silly cache add   name: 'react-dom',
+60 silly cache add   rawSpec: '^0.1.0',
+60 silly cache add   spec: '>=0.1.0 <0.2.0',
+60 silly cache add   type: 'range' }
+61 silly addNamed react-dom@>=0.1.0 <0.2.0
+62 verbose addNamed ">=0.1.0 <0.2.0" is a valid semver range for react-dom
+63 silly addNameRange { name: 'react-dom', range: '>=0.1.0 <0.2.0', hasData: false }
+64 silly mapToRegistry name react-dom
+65 silly mapToRegistry using default registry
+66 silly mapToRegistry registry https://registry.npmjs.org/
+67 silly mapToRegistry uri https://registry.npmjs.org/react-dom
+68 verbose addNameRange registry:https://registry.npmjs.org/react-dom not in flight; fetching
+69 verbose already installed skipping react-odometer@0.0.1 /Users/alexlong/Projects/DeficitBusters/deficitbusters
+70 verbose already installed skipping angular-chart.js@^0.8.8 /Users/alexlong/Projects/DeficitBusters/deficitbusters
+71 verbose already installed skipping babel-preset-react@^6.5.0 /Users/alexlong/Projects/DeficitBusters/deficitbusters
+72 verbose already installed skipping babelify@^7.2.0 /Users/alexlong/Projects/DeficitBusters/deficitbusters
+73 verbose already installed skipping event-stream@^3.3.2 /Users/alexlong/Projects/DeficitBusters/deficitbusters
+74 verbose already installed skipping gulp-clean@^0.3.1 /Users/alexlong/Projects/DeficitBusters/deficitbusters
+75 verbose already installed skipping lodash@^4.5.0 /Users/alexlong/Projects/DeficitBusters/deficitbusters
+76 verbose already installed skipping numeral@^1.5.3 /Users/alexlong/Projects/DeficitBusters/deficitbusters
+77 verbose request uri https://registry.npmjs.org/react-dom
+78 verbose request no auth needed
+79 info attempt registry request try #1 at 12:47:48 AM
+80 verbose request id 7acabcc1dbe3200a
+81 verbose etag "279ZW9HOGYTVGQ7IYVP5YWZ4G"
+82 http request GET https://registry.npmjs.org/react-dom
+83 verbose already installed skipping papaparse@^4.1.2 /Users/alexlong/Projects/DeficitBusters/deficitbusters
+84 verbose already installed skipping react@^0.13.1 /Users/alexlong/Projects/DeficitBusters/deficitbusters
+85 verbose already installed skipping react-addons@^0.9.0 /Users/alexlong/Projects/DeficitBusters/deficitbusters
+86 http 304 https://registry.npmjs.org/react-dom
+87 silly get cb [ 304,
+87 silly get   { date: 'Mon, 22 Feb 2016 05:47:48 GMT',
+87 silly get     via: '1.1 varnish',
+87 silly get     'cache-control': 'max-age=300',
+87 silly get     etag: '"279ZW9HOGYTVGQ7IYVP5YWZ4G"',
+87 silly get     age: '271',
+87 silly get     connection: 'keep-alive',
+87 silly get     'x-served-by': 'cache-iad2142-IAD',
+87 silly get     'x-cache': 'HIT',
+87 silly get     'x-cache-hits': '1',
+87 silly get     'x-timer': 'S1456120068.399446,VS0,VE5',
+87 silly get     vary: 'Accept' } ]
+88 verbose etag https://registry.npmjs.org/react-dom from cache
+89 verbose get saving react-dom to /Users/alexlong/.npm/registry.npmjs.org/react-dom/.cache.json
+90 silly addNameRange number 2 { name: 'react-dom', range: '>=0.1.0 <0.2.0', hasData: true }
+91 silly addNameRange versions [ 'react-dom',
+91 silly addNameRange   [ '0.1.0',
+91 silly addNameRange     '0.14.0-beta1',
+91 silly addNameRange     '0.14.0-beta2',
+91 silly addNameRange     '0.14.0-beta3',
+91 silly addNameRange     '0.14.0-rc1',
+91 silly addNameRange     '0.14.0',
+91 silly addNameRange     '0.14.1',
+91 silly addNameRange     '0.14.2',
+91 silly addNameRange     '0.14.3',
+91 silly addNameRange     '0.14.4',
+91 silly addNameRange     '0.14.5',
+91 silly addNameRange     '0.14.6',
+91 silly addNameRange     '0.15.0-alpha.1',
+91 silly addNameRange     '0.14.7' ] ]
+92 silly addNamed react-dom@0.1.0
+93 verbose addNamed "0.1.0" is a plain semver version for react-dom
+94 warn deprecated react-dom@0.1.0: The old react-dom package has been deprecated. Until React v0.14 is officially released, please installed react-dom with npm install react-dom@latest.
+95 silly mapToRegistry name react-dom
+96 silly mapToRegistry using default registry
+97 silly mapToRegistry registry https://registry.npmjs.org/
+98 silly mapToRegistry uri https://registry.npmjs.org/react-dom
+99 verbose addRemoteTarball https://registry.npmjs.org/react-dom/-/react-dom-0.1.0.tgz not in flight; adding
+100 verbose addRemoteTarball [ 'https://registry.npmjs.org/react-dom/-/react-dom-0.1.0.tgz',
+100 verbose addRemoteTarball   '6c821d418caed4f8ed39424cf0fad36f03fb35c4' ]
+101 info retry fetch attempt 1 at 12:47:48 AM
+102 info attempt registry request try #1 at 12:47:48 AM
+103 http fetch GET https://registry.npmjs.org/react-dom/-/react-dom-0.1.0.tgz
+104 http fetch 200 https://registry.npmjs.org/react-dom/-/react-dom-0.1.0.tgz
+105 silly fetchAndShaCheck shasum 6c821d418caed4f8ed39424cf0fad36f03fb35c4
+106 verbose addTmpTarball /var/folders/24/lcjbpcjj4ynftvnc_c5f3gp40000gn/T/npm-16643-e15327ea/registry.npmjs.org/react-dom/-/react-dom-0.1.0.tgz not in flight; adding
+107 verbose addTmpTarball already have metadata; skipping unpack for react-dom@0.1.0
+108 silly cache afterAdd react-dom@0.1.0
+109 verbose afterAdd /Users/alexlong/.npm/react-dom/0.1.0/package/package.json not in flight; writing
+110 verbose afterAdd /Users/alexlong/.npm/react-dom/0.1.0/package/package.json written
+111 silly install resolved [ { name: 'react-dom',
+111 silly install resolved     version: '0.1.0',
+111 silly install resolved     description: 'DOM is a `React.DOM` wrapper with — subjectively — more sanity and awesome helpers',
+111 silly install resolved     author: { name: 'Etienne Lemay', email: 'etienne@heliom.ca' },
+111 silly install resolved     repository:
+111 silly install resolved      { type: 'git',
+111 silly install resolved        url: 'https://github.com/EtienneLem/react-dom.git' },
+111 silly install resolved     homepage: 'https://github.com/EtienneLem/react-dom',
+111 silly install resolved     bugs: { url: 'https://github.com/EtienneLem/react-dom/issues' },
+111 silly install resolved     license: 'MIT',
+111 silly install resolved     keywords: [ 'react', 'dom' ],
+111 silly install resolved     main: 'react-dom.js',
+111 silly install resolved     devDependencies:
+111 silly install resolved      { 'jasmine-node': '2.0.0-beta4',
+111 silly install resolved        react: '0.10.0',
+111 silly install resolved        'uglify-js': '2.4.13',
+111 silly install resolved        colors: '0.6.2' },
+111 silly install resolved     scripts: { test: 'jasmine-node ./spec' },
+111 silly install resolved     _id: 'react-dom@0.1.0',
+111 silly install resolved     dist:
+111 silly install resolved      { shasum: '6c821d418caed4f8ed39424cf0fad36f03fb35c4',
+111 silly install resolved        tarball: 'http://registry.npmjs.org/react-dom/-/react-dom-0.1.0.tgz' },
+111 silly install resolved     _from: 'react-dom@>=0.1.0 <0.2.0',
+111 silly install resolved     _npmVersion: '1.4.3',
+111 silly install resolved     _npmUser: { name: 'EtienneLem', email: 'etienne@heliom.ca' },
+111 silly install resolved     maintainers: [ [Object] ],
+111 silly install resolved     deprecated: 'The old react-dom package has been deprecated. Until React v0.14 is officially released, please installed react-dom with npm install react-dom@latest.',
+111 silly install resolved     directories: {},
+111 silly install resolved     _shasum: '6c821d418caed4f8ed39424cf0fad36f03fb35c4',
+111 silly install resolved     _resolved: 'https://registry.npmjs.org/react-dom/-/react-dom-0.1.0.tgz' } ]
+112 info install react-dom@0.1.0 into /Users/alexlong/Projects/DeficitBusters/deficitbusters
+113 info installOne react-dom@0.1.0
+114 verbose installOne of react-dom to /Users/alexlong/Projects/DeficitBusters/deficitbusters not in flight; installing
+115 verbose lock using /Users/alexlong/.npm/_locks/react-dom-6c4dcb9ebdfcd064.lock for /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom
+116 silly install write writing react-dom 0.1.0 to /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom
+117 verbose unbuild node_modules/react-dom
+118 info preuninstall react-dom@0.14.7
+119 info uninstall react-dom@0.14.7
+120 verbose unbuild rmStuff react-dom@0.14.7 from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules
+121 info postuninstall react-dom@0.14.7
+122 silly gentlyRm /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom is being purged from base /Users/alexlong/Projects/DeficitBusters/deficitbusters
+123 verbose gentlyRm don't care about contents; nuking /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom
+124 silly vacuum-fs purging /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom
+125 silly vacuum-fs quitting because other entries in /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules
+126 verbose tar unpack /Users/alexlong/.npm/react-dom/0.1.0/package.tgz
+127 verbose tar unpacking to /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom
+128 silly gentlyRm /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom is being purged
+129 verbose gentlyRm don't care about contents; nuking /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom
+130 silly gunzTarPerm modes [ '755', '644' ]
+131 silly gunzTarPerm extractEntry package.json
+132 silly gunzTarPerm extractEntry .npmignore
+133 silly gunzTarPerm extractEntry README.md
+134 silly gunzTarPerm extractEntry react-dom.js
+135 silly gunzTarPerm extractEntry react-dom.min.js
+136 silly gunzTarPerm extractEntry .travis.yml
+137 silly gunzTarPerm extractEntry Cakefile
+138 silly gunzTarPerm extractEntry MIT-LICENSE
+139 silly gunzTarPerm extractEntry examples/index.html
+140 silly gunzTarPerm extractEntry spec/react-dom-spec.js
+141 verbose write writing to /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom/package.json
+142 info preinstall react-dom@0.1.0
+143 verbose readDependencies loading dependencies from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom/package.json
+144 verbose readDependencies loading dependencies from /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom/package.json
+145 silly install resolved []
+146 verbose about to build /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom
+147 info build /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom
+148 info linkStuff react-dom@0.1.0
+149 silly linkStuff react-dom@0.1.0 has /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules as its parent node_modules
+150 verbose linkBins react-dom@0.1.0
+151 verbose linkMans react-dom@0.1.0
+152 verbose rebuildBundles react-dom@0.1.0
+153 info install react-dom@0.1.0
+154 info postinstall react-dom@0.1.0
+155 verbose unlock done using /Users/alexlong/.npm/_locks/react-dom-6c4dcb9ebdfcd064.lock for /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-dom
+156 info build /Users/alexlong/Projects/DeficitBusters/deficitbusters
+157 info linkStuff deficitbusters@1.0.0
+158 silly linkStuff deficitbusters@1.0.0 has /Users/alexlong/Projects/DeficitBusters as its parent node_modules
+159 verbose linkBins deficitbusters@1.0.0
+160 verbose linkMans deficitbusters@1.0.0
+161 verbose rebuildBundles deficitbusters@1.0.0
+162 verbose rebuildBundles [ '.bin',
+162 verbose rebuildBundles   'angular-chart.js',
+162 verbose rebuildBundles   'babel-preset-react',
+162 verbose rebuildBundles   'babelify',
+162 verbose rebuildBundles   'browserify',
+162 verbose rebuildBundles   'browserify-shim',
+162 verbose rebuildBundles   'event-stream',
+162 verbose rebuildBundles   'gulp',
+162 verbose rebuildBundles   'gulp-clean',
+162 verbose rebuildBundles   'lodash',
+162 verbose rebuildBundles   'numeral',
+162 verbose rebuildBundles   'papaparse',
+162 verbose rebuildBundles   'react',
+162 verbose rebuildBundles   'react-addons',
+162 verbose rebuildBundles   'react-dom',
+162 verbose rebuildBundles   'react-input-range',
+162 verbose rebuildBundles   'react-odometer',
+162 verbose rebuildBundles   'react-rangeslider',
+162 verbose rebuildBundles   'reactify',
+162 verbose rebuildBundles   'vinyl-source-stream' ]
+163 verbose rebuild bundle /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/browserify
+164 info build /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/browserify
+165 info preinstall browserify@13.0.0
+166 info linkStuff browserify@13.0.0
+167 silly linkStuff browserify@13.0.0 has /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules as its parent node_modules
+168 verbose linkBins browserify@13.0.0
+169 verbose link bins [ { browserify: 'bin/cmd.js' },
+169 verbose link bins   '/Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/.bin',
+169 verbose link bins   false ]
+170 verbose linkMans browserify@13.0.0
+171 verbose rebuildBundles browserify@13.0.0
+172 verbose rebuildBundles [ '.bin',
+172 verbose rebuildBundles   'JSONStream',
+172 verbose rebuildBundles   'assert',
+172 verbose rebuildBundles   'browser-pack',
+172 verbose rebuildBundles   'browser-resolve',
+172 verbose rebuildBundles   'browserify-zlib',
+172 verbose rebuildBundles   'buffer',
+172 verbose rebuildBundles   'concat-stream',
+172 verbose rebuildBundles   'console-browserify',
+172 verbose rebuildBundles   'constants-browserify',
+172 verbose rebuildBundles   'crypto-browserify',
+172 verbose rebuildBundles   'defined',
+172 verbose rebuildBundles   'deps-sort',
+172 verbose rebuildBundles   'domain-browser',
+172 verbose rebuildBundles   'duplexer2',
+172 verbose rebuildBundles   'events',
+172 verbose rebuildBundles   'glob',
+172 verbose rebuildBundles   'has',
+172 verbose rebuildBundles   'htmlescape',
+172 verbose rebuildBundles   'https-browserify',
+172 verbose rebuildBundles   'inherits',
+172 verbose rebuildBundles   'insert-module-globals',
+172 verbose rebuildBundles   'isarray',
+172 verbose rebuildBundles   'labeled-stream-splicer',
+172 verbose rebuildBundles   'module-deps',
+172 verbose rebuildBundles   'os-browserify',
+172 verbose rebuildBundles   'parents',
+172 verbose rebuildBundles   'path-browserify',
+172 verbose rebuildBundles   'process',
+172 verbose rebuildBundles   'punycode',
+172 verbose rebuildBundles   'querystring-es3',
+172 verbose rebuildBundles   'read-only-stream',
+172 verbose rebuildBundles   'readable-stream',
+172 verbose rebuildBundles   'resolve',
+172 verbose rebuildBundles   'shasum',
+172 verbose rebuildBundles   'shell-quote',
+172 verbose rebuildBundles   'stream-browserify',
+172 verbose rebuildBundles   'stream-http',
+172 verbose rebuildBundles   'string_decoder',
+172 verbose rebuildBundles   'subarg',
+172 verbose rebuildBundles   'syntax-error',
+172 verbose rebuildBundles   'through2',
+172 verbose rebuildBundles   'timers-browserify',
+172 verbose rebuildBundles   'tty-browserify',
+172 verbose rebuildBundles   'url',
+172 verbose rebuildBundles   'util',
+172 verbose rebuildBundles   'vm-browserify',
+172 verbose rebuildBundles   'xtend' ]
+173 silly gentlyRm /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/.bin/browserify is being purged
+174 verbose gentlyRm don't care about contents; nuking /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/.bin/browserify
+175 silly vacuum-fs purging /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/.bin/browserify
+176 silly vacuum-fs quitting because other entries in /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/.bin
+177 info install browserify@13.0.0
+178 info postinstall browserify@13.0.0
+179 verbose rebuild bundle /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/browserify-shim
+180 info build /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/browserify-shim
+181 info preinstall browserify-shim@3.8.12
+182 info linkStuff browserify-shim@3.8.12
+183 silly linkStuff browserify-shim@3.8.12 has /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules as its parent node_modules
+184 verbose linkBins browserify-shim@3.8.12
+185 verbose linkMans browserify-shim@3.8.12
+186 verbose rebuildBundles browserify-shim@3.8.12
+187 verbose rebuildBundles [ 'exposify',
+187 verbose rebuildBundles   'mothership',
+187 verbose rebuildBundles   'rename-function-calls',
+187 verbose rebuildBundles   'resolve',
+187 verbose rebuildBundles   'through' ]
+188 info install browserify-shim@3.8.12
+189 info postinstall browserify-shim@3.8.12
+190 verbose rebuild bundle /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/gulp
+191 info build /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/gulp
+192 info preinstall gulp@3.9.1
+193 info linkStuff gulp@3.9.1
+194 silly linkStuff gulp@3.9.1 has /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules as its parent node_modules
+195 verbose linkBins gulp@3.9.1
+196 verbose link bins [ { gulp: './bin/gulp.js' },
+196 verbose link bins   '/Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/.bin',
+196 verbose link bins   false ]
+197 verbose linkMans gulp@3.9.1
+198 verbose rebuildBundles gulp@3.9.1
+199 verbose rebuildBundles [ '.bin',
+199 verbose rebuildBundles   'archy',
+199 verbose rebuildBundles   'chalk',
+199 verbose rebuildBundles   'deprecated',
+199 verbose rebuildBundles   'gulp-util',
+199 verbose rebuildBundles   'interpret',
+199 verbose rebuildBundles   'liftoff',
+199 verbose rebuildBundles   'minimist',
+199 verbose rebuildBundles   'orchestrator',
+199 verbose rebuildBundles   'pretty-hrtime',
+199 verbose rebuildBundles   'semver',
+199 verbose rebuildBundles   'tildify',
+199 verbose rebuildBundles   'v8flags',
+199 verbose rebuildBundles   'vinyl-fs' ]
+200 silly gentlyRm /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/.bin/gulp is being purged
+201 verbose gentlyRm don't care about contents; nuking /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/.bin/gulp
+202 silly vacuum-fs purging /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/.bin/gulp
+203 silly vacuum-fs quitting because other entries in /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/.bin
+204 info install gulp@3.9.1
+205 info postinstall gulp@3.9.1
+206 verbose rebuild bundle /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-input-range
+207 info build /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-input-range
+208 info preinstall react-input-range@0.6.2
+209 info linkStuff react-input-range@0.6.2
+210 silly linkStuff react-input-range@0.6.2 has /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules as its parent node_modules
+211 verbose linkBins react-input-range@0.6.2
+212 verbose linkMans react-input-range@0.6.2
+213 verbose rebuildBundles react-input-range@0.6.2
+214 info install react-input-range@0.6.2
+215 info postinstall react-input-range@0.6.2
+216 verbose rebuild bundle /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-rangeslider
+217 info build /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/react-rangeslider
+218 info preinstall react-rangeslider@1.0.0
+219 info linkStuff react-rangeslider@1.0.0
+220 silly linkStuff react-rangeslider@1.0.0 has /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules as its parent node_modules
+221 verbose linkBins react-rangeslider@1.0.0
+222 verbose linkMans react-rangeslider@1.0.0
+223 verbose rebuildBundles react-rangeslider@1.0.0
+224 verbose rebuildBundles [ 'react' ]
+225 info install react-rangeslider@1.0.0
+226 info postinstall react-rangeslider@1.0.0
+227 verbose rebuild bundle /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/reactify
+228 info build /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/reactify
+229 info preinstall reactify@1.1.1
+230 info linkStuff reactify@1.1.1
+231 silly linkStuff reactify@1.1.1 has /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules as its parent node_modules
+232 verbose linkBins reactify@1.1.1
+233 verbose linkMans reactify@1.1.1
+234 verbose rebuildBundles reactify@1.1.1
+235 verbose rebuildBundles [ '.bin', 'react-tools', 'through' ]
+236 info install reactify@1.1.1
+237 info postinstall reactify@1.1.1
+238 verbose rebuild bundle /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/vinyl-source-stream
+239 info build /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules/vinyl-source-stream
+240 info preinstall vinyl-source-stream@1.1.0
+241 info linkStuff vinyl-source-stream@1.1.0
+242 silly linkStuff vinyl-source-stream@1.1.0 has /Users/alexlong/Projects/DeficitBusters/deficitbusters/node_modules as its parent node_modules
+243 verbose linkBins vinyl-source-stream@1.1.0
+244 verbose linkMans vinyl-source-stream@1.1.0
+245 verbose rebuildBundles vinyl-source-stream@1.1.0
+246 verbose rebuildBundles [ 'through2', 'vinyl' ]
+247 info install vinyl-source-stream@1.1.0
+248 info postinstall vinyl-source-stream@1.1.0
+249 info install deficitbusters@1.0.0
+250 info postinstall deficitbusters@1.0.0
+251 info prepublish deficitbusters@1.0.0
+252 verbose validateInstall loading /Users/alexlong/Projects/DeficitBusters/deficitbusters/package.json for validation
+253 verbose stack Error: The package react@0.13.3 does not satisfy its siblings' peerDependencies requirements!
+253 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:125:32
+253 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:268:7
+253 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:142:5
+253 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+253 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+253 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+253 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+253 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+253 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+253 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+254 verbose cwd /Users/alexlong/Projects/DeficitBusters/deficitbusters/src/components
+255 error Darwin 14.5.0
+256 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install"
+257 error node v4.0.0
+258 error npm  v2.14.2
+259 error code EPEERINVALID
+260 error peerinvalid The package react@0.13.3 does not satisfy its siblings' peerDependencies requirements!
+260 error peerinvalid Peer react-addons@0.9.0 wants react@>= 0.9.0
+260 error peerinvalid Peer react-input-range@0.6.2 wants react@^0.14.0
+261 verbose exit [ 1, true ]

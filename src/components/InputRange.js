@@ -5,11 +5,6 @@ var numeral = require("numeral");
 var InputRange = React.createClass({
   componentDidMount: function() {
   },
-  getInitialState: function() {
-      return {
-          value: this.props.value,
-      }
-  },
   handleRangeChange: function(event) {
       this.setState({
           value: event.target.value,
@@ -23,10 +18,9 @@ var InputRange = React.createClass({
                     type="range" 
                     min="0" 
                     max="20000000" 
-                    value={this.state.value} 
-                    onChange={this.handleRangeChange}/>
+                    value={this.props.value} 
+                    onChange={this.props.onRangeChanged}/>
 
-                {numeral(this.state.value).format('$0,0')}
             </div>
     );
   }
