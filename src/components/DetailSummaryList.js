@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 var _ = require("lodash");
 var numeral = require("numeral");
 var DetailSummary = require("./DetailSummary");
-var BureauList = require("./BureauList");
 
 var DetailSummaryList = React.createClass({
   render: function() {

@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 var Papa = require("papaparse");
 var _ = require("lodash");
 var numeral = require("numeral");
-var AgencyList = require("./components/AgencyList");
 var DetailSummaryList = require("./components/DetailSummaryList");
 var List = require("./components/List");
 
