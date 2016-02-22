@@ -7,7 +7,6 @@ var BureauList = require("./BureauList");
 
 var AgencyList = React.createClass({
   render: function() {
-    console.log("AgencyList");
     var orderedBudgetItems = _.orderBy(this.props.budgetItems, ["totalAmount"], ["desc"]);
     return (
             <div>
@@ -19,7 +18,6 @@ var AgencyList = React.createClass({
                                 <BureauList budgetItems={itemProps["bureaus"]} />
                             </DetailSummary>
                            )
-                    console.log(DetailSummary);
                 })}
             </div>
     );
