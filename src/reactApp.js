@@ -4,6 +4,8 @@ var Papa = require("papaparse");
 var _ = require("lodash");
 var numeral = require("numeral");
 var AgencyList = require("./components/AgencyList");
+var DetailSummaryList = require("./components/DetailSummaryList");
+var List = require("./components/List");
 
 var OdometerComponent = React.createClass({
   componentDidMount: function(){
@@ -25,6 +27,7 @@ var OdometerEl = React.createElement(OdometerComponent);
 var DeficitBusters = React.createClass({
     getInitialState: function() {
         return {
+            value: 20,
             deficitAmount: 19032777056146.24,
             budgetItems: [],
         };
@@ -46,11 +49,11 @@ var DeficitBusters = React.createClass({
                         var account = item["Account Name"];
                         var amount = parseInt(item["2016"].replace(",", ""));
                         if (amount != 0) {
-                            if (!(agency in budget)) { budget[agency] = {agency: agency, totalAmount: 0, bureaus:{} } }
-                            if (!(bureau in budget[agency]["bureaus"])) { budget[agency]["bureaus"][bureau] = {bureau: bureau, totalAmount: 0, accounts:{} } }
-                            budget[agency]["bureaus"][bureau]["accounts"][account] = {account: account, amount: amount};
-                            budget[agency]["totalAmount"] += amount;
-                            budget[agency]["bureaus"][bureau]["totalAmount"] += amount;
+                            if (!(agency in budget)) { budget[agency] = {name: agency, amount: 0, items:{} } }
+                            if (!(bureau in budget[agency]["items"])) { budget[agency]["items"][bureau] = {name: bureau, amount: 0, items:{} } }
+                            budget[agency]["items"][bureau]["items"][account] = {name: account, amount: amount};
+                            budget[agency]["amount"] += amount;
+                            budget[agency]["items"][bureau]["amount"] += amount;
                         }
                     }
                 });
@@ -67,10 +70,14 @@ var DeficitBusters = React.createClass({
     render: function() {
         var deficitAmount = this.state.deficitAmount;
         var indent = {"paddingLeft": "20px"};
-        var orderedAgencyList = _.orderBy(this.state.budget, ["totalAmount"], ["desc"]);
+        var orderedAgencyList = _.orderBy(this.state.budget, ["amount"], ["desc"]);
         return (
                 <div>
-                    <AgencyList budgetItems={orderedAgencyList} itemType="agency" subItemType="bureaus" />
+                    <DetailSummaryList items={orderedAgencyList} >
+                        <DetailSummaryList >
+                            <List />
+                        </DetailSummaryList>
+                    </DetailSummaryList>
 
                     <OdometerComponent value={deficitAmount} />
                 </div>
