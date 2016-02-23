@@ -19,13 +19,13 @@ DeficitBusters.controller('MainController', function($scope, $interval, $q) {
     $scope.yearlyIncome = 0;
     $scope.yearlyExpenses = 0;
     //$interval(function(){
-	//	odometer.innerHTML = $scope.debtCounter;
-	//	$scope.debtCounter += 277.78
+	//	odometer.innerHTML = $scope.currentBalance;
+	//	$scope.currentBalance += 277.78
 	//}, 1);
 
     //$interval(function(){
-	//	odometer.innerHTML = $scope.debtCounter;
-	//	$scope.debtCounter += 54000.78
+	//	odometer.innerHTML = $scope.currentBalance;
+	//	$scope.currentBalance += 54000.78
 	//}, 2000);
     
     getInitialBudget = function() {
