@@ -1,4 +1,4 @@
-var DeficitBusters = angular.module('DeficitBusters', ["ngMaterial", "chart.js"])
+var DeficitBusters = angular.module('DeficitBusters', ["ngMaterial", "ngAnimate", "chart.js"])
 	.config(['ChartJsProvider', function (ChartJsProvider) {
 		// Configure all charts
 		ChartJsProvider.setOptions({
@@ -10,12 +10,14 @@ var DeficitBusters = angular.module('DeficitBusters', ["ngMaterial", "chart.js"]
 		});
 	  }]);
 
-DeficitBusters.controller('MainController', function($scope, $interval) {
+DeficitBusters.controller('MainController', function($scope, $interval, $q) {
     $scope.debtCounter = 19032777056146.24;
     odometer.innerHTML = $scope.debtCounter;
 	$scope.budget1 = 20;
 	$scope.budget2 = 20;
 	$scope.budget3 = 20;
+    $scope.yearlyIncome = 0;
+    $scope.yearlyExpenses = 0;
     //$interval(function(){
 	//	odometer.innerHTML = $scope.debtCounter;
 	//	$scope.debtCounter += 277.78
@@ -26,25 +28,109 @@ DeficitBusters.controller('MainController', function($scope, $interval) {
 	//	$scope.debtCounter += 54000.78
 	//}, 2000);
     
-    
+    getInitialBudget = function() {
+        var deferred = $q.defer();
+        Papa.parse("http://0.0.0.0:8001/src/budget2016.csv", {
+            download: true,
+            header: true,
+            complete: function(results) {
 
-    $scope.budgetItems = [
-    {
-        name: "Things That Go Boom",
-        amount: 20,
-        colorClass: "md-primary",
-    },
-    {
-        name: "Finding Aliens",
-        amount: 20,
-        colorClass: "md-warn",
-    },
-    {
-        name: "Teaching the Chilrens",
-        amount: 20,
-        colorClass: "md-ascent",
-    },
-    ];
+                var budgetItems = results.data;
+
+                var budget = {};
+
+                _(budgetItems).forEach(function(item) {
+                    if ("Agency Name" in item) {
+                        var agency = item["Agency Name"];
+                        var bureau = item["Bureau Name"];
+                        var account = item["Account Name"];
+                        var amount = parseInt(item["2016"].replace(",", ""));
+                        if (amount > 0) {
+                            if (!(agency in budget)) { 
+                                budget[agency] = {name: agency, amount: 0, bureaus:{}, showSubItems: false };
+                            }
+                            if (!(bureau in budget[agency]["bureaus"])) {
+                                budget[agency]["bureaus"][bureau] = {name: bureau, amount: 0, accounts:{}, showSubItems: false };
+                            }
+                            if (account in budget[agency]['bureaus'][bureau]['accounts']) {
+                                budget[agency]["bureaus"][bureau]["accounts"][account]['amount'] += amount;
+                            } else {
+                                budget[agency]["bureaus"][bureau]["accounts"][account] = {name: account, amount: amount};
+                            }
+                        }
+                    }
+                });
+
+                deferred.resolve(budget);
+            }
+        });
+        return deferred.promise;
+    }
+
+    $scope.formatAsUsd = function(number) {
+        return numeral(number).format("$0,0");
+    }
+
+    getInitialBudget().then(function(data) {
+        $scope.budget = data;
+        recalculateTotals();
+    });
+    
+    $scope.toggleBureaus = function(name) {
+        $scope.budget[name]["showSubItems"] = !$scope.budget[name]["showSubItems"];
+    }
+    $scope.onSliderMouseUp = function(type, object) {
+        if (type == "agency") {
+            var previousSum = _.sum(_.map(object['bureaus'], function (bureau) {
+                return bureau['amount'];
+            }))
+            _.forEach(object['bureaus'], function(bureau) {
+                changeBureauAmount(bureau, object['amount'] * (bureau['amount'] / previousSum))
+            });
+        } else if (type == "bureau") {
+            changeBureauAmount(object, object['amount']);
+        }
+        recalculateTotals();
+    }
+
+    function recalculateTotals() {
+        $scope.budget = _.orderBy(_.map($scope.budget, function(agency) {
+            agency["bureaus"] = _.orderBy(_.map(agency["bureaus"], function(bureau) {
+                bureau["accounts"] = _.orderBy(bureau["accounts"], ["amount"], ["desc"]);
+                bureau["amount"] = _.sum(_.map(bureau["accounts"], function(account) { return account.amount }));
+                return bureau;
+            }), ["amount"], ["desc"]);
+            agency["amount"] = _.sum(_.map(agency["bureaus"], function(bureau) { return bureau.amount }));
+            return agency;
+        }), ["amount"], ["desc"]);
+        console.log($scope.budget);
+        $scope.yearlyIncome = _.sum(_.map($scope.income, function(agency) {
+            return agency.amount;
+        }));
+        formattedYearlyIncome = numeral($scope.yearlyIncome).format("$0,0");
+
+        $scope.yearlyExpenses = _.sum(_.map($scope.budget, function(agency) {
+            return agency.amount;
+        }));
+        formattedYearlyExpenses = numeral($scope.yearlyExpenses).format("$0,0");
+
+        $scope.stats = []
+        $scope.stats.push({label: "Income", value: formattedYearlyIncome});
+        $scope.stats.push({label: "Expenses", value: formattedYearlyExpenses});
+
+        $scope.yearlyBalance = $scope.yearlyIncome - $scope.yearlyExpenses;
+        formattedYearlyBalance = numeral($scope.yearlyBalance).format("$0,0");
+        $scope.stats.push({label: "Yearly Balance", value: formattedYearlyBalance});
+    }
+
+    function changeBureauAmount(bureau, amount) {
+        var previousSum = _.sum(_.map(bureau['accounts'], function (account) {
+            return account['amount'];
+        }))
+        _.forEach(bureau["accounts"], function(account) {
+            account['amount'] = amount * (account.amount / previousSum)
+        });
+    }
 
     function updateUiData() {
         $scope.pieData = getAmounts()[0];

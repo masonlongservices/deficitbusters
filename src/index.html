@@ -4,11 +4,12 @@
     <title>Deficit Busters</title>
 
     <script src="http://github.hubspot.com/odometer/odometer.js"></script>
+    <link rel="stylesheet" href="main.css">
     <!-- Angular Material style sheet -->
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
 
 	<!-- Angular Charts -->
-	<link rel="stylesheet" href="node_modules/angular-chart.js/dist/angular-chart.css">
+	<link rel="stylesheet" href="../node_modules/angular-chart.js/dist/angular-chart.css">
 
     <!-- Odometer includes -->
     <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-car.css" />
@@ -26,12 +27,12 @@
             font-size: 50px;
         }
 
-        .column {
+        .controls {
             width: 60%;
             float: left;
         }
 
-        .column2 {
+        .info {
             width: 30%;
             float: left;
         }
@@ -52,30 +53,64 @@
             <div id="odometer" class="odometer">{{debtCounter}}</div>
         </div>
     </div>
-    <div class="column">
-        <div class="controls">
-                <md-content style="margin: 16px; padding:16px">
-                    <h3>Budget Breakdown</h3>
-                    <div ng-repeat="budgetItem in budgetItems track by $index">
+    <div class="controls">
+        <md-content style="margin: 16px; padding:16px">
+            <h3>Budget Breakdown</h3>
+            <div class="budgetItem" ng-repeat="agency in budget">
+                <div layout>
+                    <div ng-click="agency.showSubItems = !agency.showSubItems" flex="50" layout layout-align="right right">
+                        <span class="md-body-1">{{agency.name}}</span>
+                    </div>
+                    <md-slider flex min="0" max="20000000" ng-model="agency.amount" aria-label="red" id="red-slider" class="md-primary" ng-mouseup="onSliderMouseUp('agency', agency)" ></md-slider>
+                    {{formatAsUsd(agency.amount)}}
+                </div>
+                <div class="padleft" ng-show="agency.showSubItems">
+                    <div class="budgetItem" ng-repeat="bureau in agency.bureaus">
                         <div layout>
-                            <div flex="30" layout layout-align="center center">
-                                <span class="md-body-1">{{budgetItem.name}}</span>
+                            <div ng-click="bureau.showSubItems = !bureau.showSubItems"flex="50" layout layout-align="right right">
+                                <span class="md-body-1">{{bureau.name}}</span>
                             </div>
-                            <md-slider flex min="0" max="255" ng-model="budgetItem.amount" aria-label="red" id="red-slider" class="{{budgetItem.colorClass}}"></md-slider>
-                            {{budgetItem.amount}}
+                            <md-slider flex min="0" max="20000000" ng-model="bureau.amount" aria-label="red" id="red-slider" class="md-ascent" ng-mouseup="onSliderMouseUp('bureau', bureau)" ></md-slider>
+                            {{formatAsUsd(bureau.amount)}}
+                        </div>
+                        <div class="padleft" ng-show="bureau.showSubItems">
+                            <div class="budgetItem" ng-repeat="account in bureau.accounts">
+                                <div layout>
+                                    <div flex="50" layout layout-align="right right">
+                                        <span class="md-body-1">{{account.name}}</span>
+                                    </div>
+                                    <md-slider flex min="0" max="20000000" ng-model="account.amount" aria-label="red" id="red-slider" class="md-warn" ng-mouseup="onSliderMouseUp('account', account)" ></md-slider>
+                                    {{formatAsUsd(account.amount)}}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </md-content>
-        </div>
+                </div>
+            </div>
+        </md-content>
     </div>
-    <div class="column2" style="height: 50px">
+    <div class="info">
+        <md-content style="margin: 16px; padding:16px">
+            <h3>Stats</h3>
+            <div ng-repeat="stat in stats" ng-class="{expenses: stat.label == 'Expenses'}">
+                <div class="statText">
+                    <h4>{{stat.label}}</h4>
+                </div>
+                <div class="statText">
+                    <h4>{{stat.value}}</h4>
+                </div>
+                <div class="bookend"></div>
+            </div>
+        </md-content>
+    </div>
+    <!--<div class="column2" style="height: 50px">
         <canvas id="pie" class="chart chart-pie"
             chart-data="pieData" chart-labels="labels">
         </canvas> 
         <canvas id="bar" class="chart chart-bar"
             chart-data="barData" chart-labels="labels"> chart-series="series"
         </canvas>
-    </div>
+    </div>-->
      
     <!-- Angular Material requires Angular.js Libraries -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -84,15 +119,16 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
 
     <!-- Angular Charts -->
-    <script src="node_modules/angular-chart.js/node_modules/chart.js/Chart.js"></script>
-    <script src="node_modules/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="../node_modules/angular-chart.js/node_modules/chart.js/Chart.js"></script>
+    <script src="../node_modules/angular-chart.js/dist/angular-chart.js"></script>
 
     <!-- Angular Material Library -->
     <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
 
-    <!-- Lodash -->
     <script src="https://cdn.jsdelivr.net/lodash/4.5.0/lodash.min.js"></script>
+    <script src="../node_modules/papaparse/papaparse.js"></script>
+    <script src="../node_modules/numeral/numeral.js"></script>
 
 </body>
 </html>
