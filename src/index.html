@@ -101,6 +101,11 @@
                 </div>
                 <div class="bookend"></div>
             </div>
+            <div>
+                <h4 class="centered_text">Projected balance in 2050:</h4>
+                <h3 class="centered_text">{{formatAsUsd(projectedBalance)}}</h3>
+                <div class="centered_text">{{projectedBalance - currentBalance < 0 ? "Debt increased by" : "Debt decreased by"}} {{formatAsUsd(Math.abs(projectedBalance - currentBalance))}} ({{(projectedBalance - currentBalance) / projectedBalance * 100 | number: 2}}%)</div>
+            </div>
         </md-content>
     </div>
     <!--<div class="column2" style="height: 50px">
