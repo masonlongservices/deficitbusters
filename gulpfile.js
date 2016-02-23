@@ -1,6 +1,7 @@
 "use strict";
 
 var gulp = require("gulp");
+var less = require("gulp-less");
 var gulpClean = require("gulp-clean");
 var browserify = require("browserify");
 var reactify = require("reactify");
@@ -8,32 +9,13 @@ var streamMerge = require("event-stream").merge;
 var sourceStream = require("vinyl-source-stream");
 
 var DIR_SOURCE = "./src/";
-var DIR_BUILD = "./build/";
 
-gulp.task("clean", function(){
-    return streamMerge([
-        gulp.src(DIR_BUILD, {read: false}),
-    ])
-    .pipe(gulpClean());
-});
+gulp.task("build", function(){
 
-gulp.task("build", ["clean"], function(){
 
-    return streamMerge([
-        
-        browserify({
-            entries: [DIR_SOURCE, "reactApp.js"].join(""),
-            transform: [reactify],
-        })
-        .bundle()
-        .pipe(sourceStream("bundle.js")),
-
-        gulp.src([
-            [DIR_SOURCE, "**"].join(""),
-        ])
-
-    ])
-    .pipe(gulp.dest(DIR_BUILD));
+    gulp.src([DIR_SOURCE, "*.less"].join(""))
+    .pipe(less())
+    .pipe(gulp.dest(DIR_SOURCE));
 });
 
 // WATCH
