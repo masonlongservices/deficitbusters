@@ -46,8 +46,16 @@ DeficitBusters.controller('MainController', function($scope, $interval, $q) {
                         var bureau = item["Bureau Name"];
                         var account = item["Account Name"];
                         var amount = parseInt(item["2016"].replace(",", ""));
-                        if (amount > 0) {
-                            if (!(agency in budget)) { 
+                        var type = "";
+                        if (amount != 0) {
+                            if (amount < 0) {
+                                type = "income";
+                                amount = Math.abs(amount)
+                            } else {
+                                type = "expense";
+                            }
+
+                            if (!(agency in budget)) {
                                 budget[agency] = {name: agency, amount: 0, bureaus:{}, showSubItems: false };
                             }
                             if (!(bureau in budget[agency]["bureaus"])) {
@@ -56,7 +64,7 @@ DeficitBusters.controller('MainController', function($scope, $interval, $q) {
                             if (account in budget[agency]['bureaus'][bureau]['accounts']) {
                                 budget[agency]["bureaus"][bureau]["accounts"][account]['amount'] += amount;
                             } else {
-                                budget[agency]["bureaus"][bureau]["accounts"][account] = {name: account, amount: amount};
+                                budget[agency]["bureaus"][bureau]["accounts"][account] = {name: account, type: type, amount: amount};
                             }
                         }
                     }
@@ -73,8 +81,7 @@ DeficitBusters.controller('MainController', function($scope, $interval, $q) {
     }
 
     getInitialBudget().then(function(data) {
-        $scope.budget = data;
-        recalculateTotals();
+        recalculateTotals(data);
     });
     
     $scope.toggleBureaus = function(name) {
@@ -94,23 +101,56 @@ DeficitBusters.controller('MainController', function($scope, $interval, $q) {
         recalculateTotals();
     }
 
-    function recalculateTotals() {
-        $scope.budget = _.orderBy(_.map($scope.budget, function(agency) {
-            agency["bureaus"] = _.orderBy(_.map(agency["bureaus"], function(bureau) {
-                bureau["accounts"] = _.orderBy(bureau["accounts"], ["amount"], ["desc"]);
+    function copyObject(object) {
+        return JSON.parse(JSON.stringify(object));
+    }
+
+    function recalculateTotals(initialData) {
+        var initialIncome = $scope.income;
+        var initialExpenses = $scope.expenses;
+        if (initialData) {
+            initialIncome = initialData;
+            initialExpenses = initialData;
+        }
+        $scope.income = _.orderBy(_.filter(_.map(copyObject(initialIncome), function(agency) {
+            agency["bureaus"] = _.orderBy(_.filter(_.map(agency["bureaus"], function(bureau) {
+                bureau["accounts"] = _.orderBy(_.filter(bureau["accounts"], function(account) {
+                    if (account.type == "income") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }), ["amount"], ["desc"]);
                 bureau["amount"] = _.sum(_.map(bureau["accounts"], function(account) { return account.amount }));
                 return bureau;
-            }), ["amount"], ["desc"]);
+            }), function(bureau) { return bureau.accounts && bureau.accounts.length }), ["amount"], ["desc"]);
             agency["amount"] = _.sum(_.map(agency["bureaus"], function(bureau) { return bureau.amount }));
             return agency;
-        }), ["amount"], ["desc"]);
+        }), function(agency) { return agency.bureaus && agency.bureaus.length }), ["amount"], ["desc"]);
+
+        $scope.expenses = _.orderBy(_.filter(_.map(copyObject(initialExpenses), function(agency) {
+            agency["bureaus"] = _.orderBy(_.filter(_.map(agency["bureaus"], function(bureau) {
+                bureau["accounts"] = _.orderBy(_.filter(bureau["accounts"], function(account) {
+                    if (account.type == "expense") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }), ["amount"], ["desc"]);
+                bureau["amount"] = _.sum(_.map(bureau["accounts"], function(account) { return account.amount }));
+                return bureau;
+            }), function(bureau) { return bureau.accounts && bureau.accounts.length }), ["amount"], ["desc"]);
+            agency["amount"] = _.sum(_.map(agency["bureaus"], function(bureau) { return bureau.amount }));
+            return agency;
+        }), function(agency) { return agency.bureaus && agency.bureaus.length }), ["amount"], ["desc"]);
         console.log($scope.budget);
+
         $scope.yearlyIncome = _.sum(_.map($scope.income, function(agency) {
             return agency.amount;
         }));
         formattedYearlyIncome = numeral($scope.yearlyIncome).format("$0,0");
 
-        $scope.yearlyExpenses = _.sum(_.map($scope.budget, function(agency) {
+        $scope.yearlyExpenses = _.sum(_.map($scope.expenses, function(agency) {
             return agency.amount;
         }));
         formattedYearlyExpenses = numeral($scope.yearlyExpenses).format("$0,0");
