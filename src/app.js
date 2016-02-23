@@ -11,21 +11,22 @@ var DeficitBusters = angular.module('DeficitBusters', ["ngMaterial", "ngAnimate"
 	  }]);
 
 DeficitBusters.controller('MainController', function($scope, $interval, $q) {
-    $scope.debtCounter = 19032777056146.24;
-    odometer.innerHTML = $scope.debtCounter;
+    $scope.Math = Math;
+    $scope.currentBalance = -19032777056146.24;
+    odometer.innerHTML = ($scope.currentBalance * -1);
 	$scope.budget1 = 20;
 	$scope.budget2 = 20;
 	$scope.budget3 = 20;
     $scope.yearlyIncome = 0;
     $scope.yearlyExpenses = 0;
     //$interval(function(){
-	//	odometer.innerHTML = $scope.debtCounter;
-	//	$scope.debtCounter += 277.78
+	//	odometer.innerHTML = $scope.currentBalance;
+	//	$scope.currentBalance += 277.78
 	//}, 1);
 
     //$interval(function(){
-	//	odometer.innerHTML = $scope.debtCounter;
-	//	$scope.debtCounter += 54000.78
+	//	odometer.innerHTML = $scope.currentBalance;
+	//	$scope.currentBalance += 54000.78
 	//}, 2000);
     
     getInitialBudget = function() {
@@ -121,6 +122,9 @@ DeficitBusters.controller('MainController', function($scope, $interval, $q) {
         $scope.yearlyBalance = $scope.yearlyIncome - $scope.yearlyExpenses;
         formattedYearlyBalance = numeral($scope.yearlyBalance).format("$0,0");
         $scope.stats.push({label: "Yearly Balance", value: formattedYearlyBalance});
+
+        var yearsDifference = 2050 - 2016;
+        $scope.projectedBalance = $scope.currentBalance + (yearsDifference * $scope.yearlyBalance);
     }
 
     function changeBureauAmount(bureau, amount) {
