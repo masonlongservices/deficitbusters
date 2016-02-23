@@ -30,3 +30,14 @@ details summary::-webkit-details-marker {
 .padleft {
     padding-left: 20px;
 }
+.statText {
+    float: left;
+    width: 40%;
+    text-align: right;
+}
+.expenses {
+    border-bottom: 1px solid black;
+}
+.bookend {
+    clear: both;
+}
