@@ -99,12 +99,15 @@ DeficitBusters.controller('MainController', function($scope, $interval, $q) {
     function recalculateTotals() {
         $scope.income = _.orderBy(_.filter(_.map(copyObject($scope.budget), function(agency) {
             agency["bureaus"] = _.orderBy(_.filter(_.map(agency["bureaus"], function(bureau) {
-                bureau["accounts"] = _.orderBy(_.filter(bureau["accounts"], function(account) {
+                bureau["accounts"] = _.orderBy(_.map(_.filter(bureau["accounts"], function(account) {
                     if (account.amount < 0) {
                         return true;
                     } else {
                         return false;
                     }
+                }), function(account) {
+                    account.amount = -1 * account.amount;
+                    return account
                 }), ["amount"], ["desc"]);
                 bureau["amount"] = _.sum(_.map(bureau["accounts"], function(account) { return account.amount }));
                 return bureau;
@@ -131,7 +134,7 @@ DeficitBusters.controller('MainController', function($scope, $interval, $q) {
         console.log($scope.budget);
 
         $scope.yearlyIncome = _.sum(_.map($scope.income, function(agency) {
-            return -1 * agency.amount;
+            return agency.amount;
         }));
         formattedYearlyIncome = numeral($scope.yearlyIncome).format("$0,0");
 
