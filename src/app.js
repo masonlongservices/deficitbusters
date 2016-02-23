@@ -11,8 +11,8 @@ var DeficitBusters = angular.module('DeficitBusters', ["ngMaterial", "ngAnimate"
 	  }]);
 
 DeficitBusters.controller('MainController', function($scope, $interval, $q) {
-    $scope.debtCounter = 19032777056146.24;
-    odometer.innerHTML = $scope.debtCounter;
+    $scope.currentBalance = -19032777056146.24;
+    odometer.innerHTML = ($scope.currentBalance * -1);
 	$scope.budget1 = 20;
 	$scope.budget2 = 20;
 	$scope.budget3 = 20;
