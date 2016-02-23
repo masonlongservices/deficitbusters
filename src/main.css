@@ -2,29 +2,29 @@ details summary::-webkit-details-marker {
 	display: none;
 }
 
-.ng-enter {
+.budgetItem.ng-enter {
     -webkit-transition: 1s;
     transition: 1s;
     opacity: 0;
 }
-.ng-enter-active {
+.budgetItem.ng-enter-active {
     opacity: 1;
 }
 
-.ng-leave {
+.budgetItem.ng-leave {
     -webkit-transition: 1s;
     transition: 1s;
     opacity: 0;
 }
-.ng-leave-active {
+.budgetItem.ng-leave-active {
     opacity: 1;
 }
-.ng-move {
+.budgetItem.ng-move {
     -webkit-transition: 1s;
     transition: 1s;
     opacity: 0;
 }
-.ng-move-active {
+.budgetItem.ng-move-active {
     opacity: 1;
 }
 .padleft {
