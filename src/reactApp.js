@@ -26,6 +26,7 @@ var OdometerEl = React.createElement(OdometerComponent);
 var DeficitBusters = React.createClass({
     getInitialState: function() {
         return {
+            agencies: [],
             value: 20,
             deficitAmount: 19032777056146.24,
             budget: [],
@@ -37,31 +38,62 @@ var DeficitBusters = React.createClass({
 			download: true,
             header: true,
 			complete: function(results) {
-        var budgetItems = results.data;
+                var budgetItems = results.data;
 
-        var budget = {};
+                var budget = {};
 
-        _(budgetItems).forEach(function(item) {
-            if ("Agency Name" in item) {
-                var agency = item["Agency Name"];
-                var bureau = item["Bureau Name"];
-                var account = item["Account Name"];
-                var amount = parseInt(item["2016"].replace(",", ""));
-                if (amount != 0) {
-                    if (!(agency in budget)) { budget[agency] = {name: agency, amount: 0, items:{} } }
-                    if (!(bureau in budget[agency]["items"])) { budget[agency]["items"][bureau] = {name: bureau, amount: 0, items:{} } }
-                    budget[agency]["items"][bureau]["items"][account] = {name: account, amount: amount};
-                    budget[agency]["amount"] += amount;
-                    budget[agency]["items"][bureau]["amount"] += amount;
-                }
-            }
-        });
+                var agencies = [];
+                _(budgetItems).forEach(function(item) {
+                    if ("Agency Name" in item) {
+                        var agencyName = item["Agency Name"];
+                        var bureauName = item["Bureau Name"];
+                        var accountName = item["Account Name"];
+                        var amount = parseInt(item["2016"].replace(",", ""));
+                        if (amount != 0) {
+                            var agency = _.remove(agencies, (agency) => agency.name === agencyName)[0];
+                            if (agency === undefined) {
+                                agency = {"name": agencyName, amount: 0, bureaus: []};
+                            }
 
-        console.log(budget);
-        self.setState({budget: budget});
+                            var bureau = _.remove(agency.bureaus, (bureau) => bureau.name === bureauName)[0];
+                            if (bureau === undefined) {
+                                bureau = {"name": bureauName, amount: 0, accounts: []};
+                            }
+
+                            bureau.accounts.push({"name": accountName, "amount": amount});
+                            agency.bureaus.push(bureau);
+                            agencies.push(agency);
+                        }
+                    }
+                });
+
+                self.setState({agencies: agencies});
+                self.calculateSums();
+                self.reorderByAmounts();
 			}
 		});
         //setInterval(this.tick, 2000);
+    },
+    calculateSums: function() {
+        var agencies = this.state.agencies;
+        for (var agency of agencies) {
+            for (var bureau of agency.bureaus) {
+                bureau.amount = bureau.accounts.reduce( (prev, curr) => prev + curr.amount, 0 );
+            }
+            agency.amount = agency.bureaus.reduce( (prev, curr) => prev + curr.amount, 0 )
+        }
+        this.setState({agencies: agencies});
+    },
+    reorderByAmounts: function() {
+        var agencies = this.state.agencies;
+        agencies.sort( (a,b) => a.amount > b.amount ? -1 : 1 );
+        for (var agency of this.state.agencies) {
+            for (var bureau of agency.bureaus) {
+                bureau.accounts.sort( (a,b) => a.amount > b.amount ? -1 : 1 );
+            }
+            agency.bureaus.sort( (a,b) => a.amount > b.amount ? -1 : 1 );
+        }
+        this.setState({agencies: agencies});
     },
     onRangeChanged: function(event) {
         console.log("onRangeChanged");
@@ -69,17 +101,11 @@ var DeficitBusters = React.createClass({
         console.log(event.target.value);
         console.log(event.target);
     },
-    onAgencyAmountChanged: function(agency, event) {
-      console.log("onAgencyAmountChanged");
-      console.log(event);
-      var budget = this.state.budget;
-      budget[agency]["amount"] = event.target.value;
-      console.log(agency);
-      console.log(budget[agency]);
-      this.setState({budget: budget});
-    },
     tick: function() {
         this.setState({deficitAmount: this.state.deficitAmount + 54000.78});
+    },
+    formatAsUsd: function(integer) {
+        return numeral(integer).format('$0,0');
     },
     render: function() {
         var deficitAmount = this.state.deficitAmount;
@@ -88,53 +114,47 @@ var DeficitBusters = React.createClass({
             width: "50%",
             float: "left"
         };
-        var orderedAgencyList = _.orderBy(this.state.budget, ["amount"], ["desc"]);
         var self = this;
         return (
                 <div>
-                  {_.map(orderedAgencyList, function(agencyProps, agency) {
-                    var agencyName = agencyProps["name"];
-                    var agencyAmount = numeral(agencyProps["amount"]).format('$0,0');
+                  {this.state.agencies.map( (agency) => {
                     return (
                         <details>
                           <summary>
-                            <div style={summaryText}>{agencyName + " (" + agencyAmount + ")"}</div>
+                            <div style={summaryText}>{agency.name + " (" + this.formatAsUsd(agency.amount) + ")"}</div>
                             <input 
-                                agency={agencyName}
+                                agency={agency.name}
                                 type="range" 
                                 min="0" 
                                 max="20000000" 
-                                value={self.state.budget[agencyName]["amount"]}
-                                onChange={self.onAgencyAmountChanged.bind(self, agencyName)} />
+                                value={agency.amount}
+                                />
                           </summary>
                           <div style={indent}>
-                            {_.map(_.orderBy(agencyProps["items"], ["amount"], ["desc"]), function(bureauProps, bureau) {
-                              var bureauName = bureauProps["name"];
-                              var bureauAmount = numeral(bureauProps["amount"]).format('$0,0');
-                              return (
-                                <details>
-                                  <summary>
-                                    <div style={summaryText}>{bureauName + " (" + bureauAmount + ")"}</div>
-                                    <input 
-                                        type="range" 
-                                        min="0" 
-                                        max="20000000" 
-                                        value={bureauProps["amount"]} 
-                                        onChange={self.onRangeChanged} />
-                                  </summary>
-                                  <div style={indent}>
-                                    {_.map(_.orderBy(bureauProps["items"], ["amount"], ["desc"]), function(accountProps, account) {
-                                      var accountName = accountProps["name"];
-                                      var accountAmount = numeral(accountProps["amount"]).format('$0,0');
+                              {agency.bureaus.map( (bureau) => {
+                                return (
+                                    <details>
+                                      <summary>
+                                        <div style={summaryText}>{bureau.name + " (" + this.formatAsUsd(bureau.amount) + ")"}</div>
+                                        <input
+                                            bureau={bureau.name}
+                                            type="range"
+                                            min="0"
+                                            max="20000000"
+                                            value={bureau.amount}
+                                            />
+                                      </summary>
+                                      <div style={indent}>
+                                      {bureau.accounts.map( (account) => {
                                       return (
                                         <div>
-                                          <div style={summaryText}>{accountName + " (" + accountAmount + ")"}</div>
+                                          <div style={summaryText}>{account.name + " (" + this.formatAsUsd(account.amount) + ")"}</div>
                                           <input 
                                               type="range" 
                                               min="0" 
                                               max="20000000" 
-                                              value={accountProps["amount"]} 
-                                              onChange={self.onRangeChanged} />
+                                              value={account.amount}
+                                              />
                                         </div>
                                         )
                                     })}
